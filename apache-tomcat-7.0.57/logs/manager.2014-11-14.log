@@ -1,0 +1,12 @@
+реб 14, 2014 1:54:04 PM org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+реб 14, 2014 1:54:04 PM org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Global resources are available
+реб 14, 2014 1:54:04 PM org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+реб 14, 2014 1:54:04 PM org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+реб 14, 2014 1:54:04 PM org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/C:/Users/Barak/AppData/Local/Temp/context7839024524393703696.xml'
+реб 14, 2014 1:54:04 PM org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/Trivia'
