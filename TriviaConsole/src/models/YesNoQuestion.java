@@ -5,12 +5,17 @@
  */
 package models;
 
-public class YesNoQuestion extends OptionsQuestion {
+import enums.Category;
+import enums.Difficulty;
 
-    public YesNoQuestion() {
-        super();
+public class YesNoQuestion extends MultipleChoiceQuestion {
+
+    public YesNoQuestion(Difficulty difficulty, Category category, String questionText, boolean isTrue) {
+        super(difficulty, category, questionText);
 
         options.add("Yes");
         options.add("No");
+        
+        answerIndex = isTrue ? 0 : 1;
     }
 }

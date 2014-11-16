@@ -2,8 +2,9 @@ package enums;
 
 public enum Category {
 
+    None,
     General,
-    Sports,
+    Geography,
     History,
-    Geography
+    Sports,
 }

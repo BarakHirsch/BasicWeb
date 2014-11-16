@@ -16,11 +16,19 @@ public class Manager {
         questions = new ArrayList<>();
     }
 
+    public void Save() {
+        fileManager.Save(questions);
+    }
+
     public Question[] getQuestions() {
         return questions.toArray(new Question[questions.size()]);
     }
 
     public void deleteQuestion(Question question) {
         questions.remove(question);
+    }
+
+    public void addQuestion(Question question) {
+        questions.add(question);
     }
 }

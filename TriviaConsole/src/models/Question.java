@@ -8,6 +8,12 @@ public class Question {
     private Category category;
     private String questionText;
 
+    public Question(Difficulty difficulty, Category category, String questionText) {
+        this.difficulty = difficulty;
+        this.category = category;
+        this.questionText = questionText;
+    }
+
     public Difficulty getDifficulty() {
         return difficulty;
     }
