@@ -4,10 +4,8 @@ import java.io.*;
 
 public class FileManager<T  extends Serializable> {
 
-    private final String filePath;
-    private File fileData;
+    private final File fileData;
     public FileManager(String filePath) {
-        this.filePath = filePath;
         fileData = new File(filePath);
     }
 
