@@ -20,7 +20,7 @@ public class TriviaConsole {
         reader = new BufferedReader(new InputStreamReader(System.in));
         manager = new Manager();
 
-        System.out.println("Lets Play Trivia!");
+        System.out.println("Welcome to Trivia!");
 
         do {
             MainMenuOptions selectedOption = showMainMenu();
