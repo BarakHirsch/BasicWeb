@@ -7,8 +7,8 @@ package models;
 
 import enums.Category;
 import enums.Difficulty;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 import java.util.Arrays;
 
 public class YesNoQuestion extends MultipleChoiceQuestion {
