@@ -55,12 +55,12 @@ public class TriviaConsole {
     }
 
     private static MainMenuOptions showMainMenu() throws IOException {
-        System.out.println("What do you want to do?");
-        System.out.println(MainMenuOptions.Play.ordinal() + ". Play");
-        System.out.println(MainMenuOptions.AddQuestion.ordinal() + ". Add Question");
-        System.out.println(MainMenuOptions.DeleteQuestion.ordinal() + ". Delete Question");
-        System.out.println(MainMenuOptions.Save.ordinal() + ". Save Changes");
-        System.out.println(MainMenuOptions.Quit.ordinal() + ". Quit");
+        System.out.println("Please select one of the options:");
+        System.out.println(MainMenuOptions.Play.ordinal() + ". Play Trivia");
+        System.out.println(MainMenuOptions.AddQuestion.ordinal() + ". Add a question to the database");
+        System.out.println(MainMenuOptions.DeleteQuestion.ordinal() + ". Delete a question from the database");
+        System.out.println(MainMenuOptions.Save.ordinal() + ". Save changes");
+        System.out.println(MainMenuOptions.Quit.ordinal() + ". Quit game");
 
         String selection = reader.readLine();
 
@@ -68,7 +68,7 @@ public class TriviaConsole {
     }
 
     private static void playGame() throws IOException {
-        System.out.println("First you need to choose categories, choose 0 when done picking categories");
+        System.out.println(" Please choose categories, choose 0 when done picking categories");
         ArrayList<Category> categoriesToPlay = new ArrayList<>();
         Category cat;
         do {
@@ -123,7 +123,7 @@ public class TriviaConsole {
         while (true) {
             System.out.println("Select question type:");
             System.out.println("1. Open question");
-            System.out.println("2. Yes or No question");
+            System.out.println("2. Yes / No question");
             System.out.println("3. Multiple choice question");
 
             String selection = reader.readLine();
