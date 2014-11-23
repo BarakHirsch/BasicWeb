@@ -3,7 +3,7 @@ package models;
 import enums.*;
 import java.io.Serializable;
 
-public class Question implements Serializable  {
+public class Question implements Serializable {
 
     private Difficulty difficulty;
     private Category category;
@@ -44,8 +44,13 @@ public class Question implements Serializable  {
     public void setCurrectAnswer(String answer) {
         correctAnswer = answer;
     }
-    public boolean verifyAnswer(String answer) { 
+
+    public boolean verifyAnswer(String answer) {
 
         return correctAnswer.equalsIgnoreCase(answer);
+    }
+
+    public String getAnswer() {
+        return this.correctAnswer;
     }
 }

@@ -2,7 +2,6 @@ package models;
 
 import enums.Category;
 import enums.Difficulty;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleChoiceQuestion extends Question {
@@ -10,7 +9,7 @@ public class MultipleChoiceQuestion extends Question {
     protected List<String> options;
 
     public MultipleChoiceQuestion(Difficulty difficulty, Category category, String questionText, List<String> options, int answerIndex) {
-        super(difficulty, category, questionText, "" + answerIndex );
+        super(difficulty, category, questionText, options.get(answerIndex));
         this.options = options;
     }
   

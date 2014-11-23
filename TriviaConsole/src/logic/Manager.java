@@ -5,19 +5,16 @@ import models.Question;
 import enums.Category;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 
 public class Manager {
 
     public final FileManager<ArrayList<Question>> fileManager;
-
     private ArrayList<Question> questions;    
-    private boolean[] categoriesInPlay;
-    private int curIndex;    
 
     public Manager() {
         fileManager = new FileManager<>("SavedGame.txt");
-        categoriesInPlay = null;
         try {
             questions = fileManager.Load();
         } catch (FileNotFoundException ex) {
@@ -33,7 +30,6 @@ public class Manager {
         if ( questions == null ) {
            questions = new ArrayList<>();
         }
-
     }
 
     public void Save() {
@@ -58,31 +54,15 @@ public class Manager {
         questions.add(question);
     }
 
-    public void startPlayMode(Category[] categories) {         
-        categoriesInPlay = new boolean[Category.values().length];
-        for ( int i = 0; i < categories.length; i++ ){
-            categoriesInPlay[categories[i].ordinal()] = true;
-        }
-        curIndex = 0;
-
-    }
-    public Question getNextQuestionForPlay() {
-        if ( categoriesInPlay == null ) {
-            System.err.println("Tring to play without initiate");
-            return null;
-        }
-        Question toReturn = null;
-        for ( int i = curIndex; i < questions.size(); i++, curIndex++ ) {
-            if ( categoriesInPlay[questions.get(i).getCategory().ordinal()] == true ) {
-                toReturn = questions.get(i);
-                curIndex++;
-                break;
+    public TriviaGame startGame(List<Category> categories) {
+        ArrayList<Question> filteredQuestions = new ArrayList<>();
+        
+        for (Question question : questions) {
+            if (categories.contains(question.getCategory())) {
+                filteredQuestions.add(question);
             }
         }
-        return toReturn;
-    }
-
-    public boolean isGameEnded() { 
-        return (curIndex) >= questions.size();
+                
+        return new TriviaGame(filteredQuestions);
     }
 }

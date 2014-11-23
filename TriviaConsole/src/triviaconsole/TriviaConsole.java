@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import logic.Manager;
+import logic.TriviaGame;
 
 public class TriviaConsole {
 
@@ -26,29 +27,29 @@ public class TriviaConsole {
             MainMenuOptions selectedOption = showMainMenu();
 
             switch (selectedOption) {
-            case None:
-                System.out.println("Invalid selection, please pick again");
-                break;
+                case None:
+                    System.out.println("Invalid selection, please pick again");
+                    break;
 
-            case Play:
-                playGame();
-                break;
+                case Play:
+                    playGame();
+                    break;
 
-            case AddQuestion:
-                addQuestion();
-                break;
+                case AddQuestion:
+                    addQuestion();
+                    break;
 
-            case DeleteQuestion:
-                deleteQuestion();
-                break;
+                case DeleteQuestion:
+                    deleteQuestion();
+                    break;
 
-            case Save:
-                save();
-                break;
+                case Save:
+                    save();
+                    break;
 
-            case Quit:
-                System.out.println("Goodbye");
-                return;
+                case Quit:
+                    System.out.println("Goodbye");
+                    return;
             }
         } while (true);
     }
@@ -66,22 +67,29 @@ public class TriviaConsole {
         return ParseHelper.parseMainMenuOptions(selection);
     }
 
-    private static void playGame() throws IOException{
+    private static void playGame() throws IOException {
         System.out.println("First you need to choose categories, choose 0 when done picking categories");
-        List<Category> categoriesToPlay = new ArrayList<>();
+        ArrayList<Category> categoriesToPlay = new ArrayList<>();
         Category cat;
-        do { 
+        do {
             cat = getCategory();
             categoriesToPlay.add(cat);
-        } while(cat != Category.None);
+        } while (cat != Category.None);
 
-        System.out.println("\nGame starting\n\n");
-        manager.startPlayMode(categoriesToPlay.toArray(new Category[1]));
-        while( !manager.isGameEnded() ) {
-            Question curQuestion = manager.getNextQuestionForPlay();            
+        TriviaGame currentGame = manager.startGame(categoriesToPlay);
+
+        if (!currentGame.hasMoreQuestions()) {
+            System.out.println("There are no questions in the selected categories");
+            return;
+        }
+
+        System.out.println("Game starting");
+
+        while (currentGame.hasMoreQuestions()) {
+            Question curQuestion = currentGame.getNextQuestion();
             playQuestion(curQuestion);
         }
-        System.out.println("Game Ended, you can try again");
+        System.out.println("Game Ended, there are no more questions");
     }
 
     private static void addQuestion() throws IOException {
@@ -97,7 +105,7 @@ public class TriviaConsole {
 
             if (category == Category.None) {
                 System.out.println("Invalid selection");
-                if ( wantToStop() ) {
+                if (wantToStop()) {
                     return;
                 }
             }
@@ -114,25 +122,25 @@ public class TriviaConsole {
             String selection = reader.readLine();
 
             switch (selection) {
-            case "1":
-                System.out.println("Please insert the answer:");
-                String answer = reader.readLine();
-                question = new Question(difficulty, category, questionText, answer);
-                break;
-            case "2":
-                boolean isTrue = GetIsTrue();
-                question = new YesNoQuestion(difficulty, category, questionText, isTrue);
-                break;
-            case "3":
+                case "1":
+                    System.out.println("Please insert the answer:");
+                    String answer = reader.readLine();
+                    question = new Question(difficulty, category, questionText, answer);
+                    break;
+                case "2":
+                    boolean isTrue = GetIsTrue();
+                    question = new YesNoQuestion(difficulty, category, questionText, isTrue);
+                    break;
+                case "3":
 
-                List<String> options = getOptions();
-                int answerIndex = getAnswerIndex(options);
-                question = new MultipleChoiceQuestion(difficulty, category, questionText, options, answerIndex);
+                    List<String> options = getOptions();
+                    int answerIndex = getAnswerIndex(options);
+                    question = new MultipleChoiceQuestion(difficulty, category, questionText, options, answerIndex);
 
-                break;
-            default:
-                System.out.println("Invalid selection, please pick again");
-                break;
+                    break;
+                default:
+                    System.out.println("Invalid selection, please pick again");
+                    break;
             }
 
             if (question != null) {
@@ -151,13 +159,13 @@ public class TriviaConsole {
             String selection = reader.readLine();
 
             switch (selection) {
-            case "1":
-                return true;
-            case "2":
-                return false;
-            default:
-                System.out.println("Invalid selection, please pick again");
-                break;
+                case "1":
+                    return true;
+                case "2":
+                    return false;
+                default:
+                    System.out.println("Invalid selection, please pick again");
+                    break;
             }
         } while (true);
     }
@@ -183,7 +191,7 @@ public class TriviaConsole {
     }
 
     private static Category getCategory() throws IOException {
-        Category category = Category.None;
+        Category category;
         System.out.println("Please select the category:");
         System.out.println(Category.General.ordinal() + ". General");
         System.out.println(Category.Geography.ordinal() + ". Geography");
@@ -256,7 +264,7 @@ public class TriviaConsole {
     }
 
     private static int getAnswerIndex(List<String> options) throws IOException {
-        System.out.println("This are the entered answers:");
+        System.out.println("These are the possible answers:");
         for (int i = 0; i < options.size(); i++) {
             System.out.println((i + 1) + ". " + options.get(i));
         }
@@ -270,10 +278,11 @@ public class TriviaConsole {
             if (options.size() < answerNumber || answerNumber <= 0) {
                 System.out.println("Invalid answer number entered, please enter a valid answer number");
             } else {
-                return answerNumber;
+                return answerNumber - 1;
             }
         }
     }
+
     private static boolean wantToStop() throws IOException {
         System.out.println("Do you want to quit? (Y/N)");
         String questionText = reader.readLine();
@@ -282,22 +291,27 @@ public class TriviaConsole {
     }
 
     private static void playQuestion(Question que) throws IOException {
-        if ( que == null ) {
+        if (que == null) {
             return;
         }
-         System.out.println(que.getQuestionText()); 
-         if ( que instanceof MultipleChoiceQuestion ) {
-            List<String> options = (( MultipleChoiceQuestion)que).getOptions();
-            for (int i = 0; i < options.size(); i++) {
-                System.out.println((i + 1) + ". " + options.get(i));
-            }
-         }
-         System.out.print("Your answer:");
-         String input = reader.readLine();
-         if ( true == que.verifyAnswer(input) ) {
+        System.out.println(que.getQuestionText());
+        String answer;
+
+        if (que instanceof MultipleChoiceQuestion) {
+            List<String> options = ((MultipleChoiceQuestion) que).getOptions();
+            int answerIndex = getAnswerIndex(options);
+            answer = options.get(answerIndex);
+        } else {
+
+            System.out.print("Your answer:");
+            answer = reader.readLine();
+        }
+
+        if (true == que.verifyAnswer(answer)) {
             System.out.println("You Answered correctly");
-         } else {
-            System.out.println("Wrong answer");
-         }
+        } else {
+            System.out.println("Wrong answer, The currect answer is:");
+            System.out.println(que.getAnswer());
+        }
     }
 }
