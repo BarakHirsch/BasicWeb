@@ -83,12 +83,19 @@ public class TriviaConsole {
             return;
         }
 
-        System.out.println("Game starting");
+        System.out.println("Starting game, to quit answer 'Quit' as an answer");
 
         while (currentGame.hasMoreQuestions()) {
+
             Question curQuestion = currentGame.getNextQuestion();
-            playQuestion(curQuestion);
+            boolean hasQuit = playQuestion(curQuestion);
+
+            if (hasQuit) {
+                System.out.println("Game Ended, goodbye");
+                return;
+            }
         }
+
         System.out.println("Game Ended, there are no more questions");
     }
 
@@ -135,6 +142,11 @@ public class TriviaConsole {
 
                     List<String> options = getOptions();
                     int answerIndex = getAnswerIndex(options);
+
+                    if (answerIndex == Integer.MAX_VALUE) {
+                        return;
+                    }
+
                     question = new MultipleChoiceQuestion(difficulty, category, questionText, options, answerIndex);
 
                     break;
@@ -237,7 +249,7 @@ public class TriviaConsole {
     private static List<String> getOptions() throws IOException {
         ArrayList<String> options = new ArrayList<>();
 
-        int answersCount = GetAnswersCount();
+        int answersCount = GetNumberOfOptions();
 
         for (int i = 1; i < answersCount + 1; i++) {
             System.out.println("Please enter answer number " + i + ":");
@@ -247,10 +259,10 @@ public class TriviaConsole {
         return options;
     }
 
-    public static int GetAnswersCount() throws IOException {
+    public static int GetNumberOfOptions() throws IOException {
         while (true) {
 
-            System.out.println("Plase insret the number of answers:");
+            System.out.println("Plase insret the number of options:");
             String input = reader.readLine();
 
             int answerCount = ParseHelper.tryParseNumber(input);
@@ -273,6 +285,10 @@ public class TriviaConsole {
             System.out.println("please insert the currect answer number:");
             String input = reader.readLine();
 
+            if (input.equalsIgnoreCase("Quit")) {
+                return Integer.MAX_VALUE;
+            }
+
             int answerNumber = ParseHelper.tryParseNumber(input);
 
             if (options.size() < answerNumber || answerNumber <= 0) {
@@ -290,28 +306,36 @@ public class TriviaConsole {
 
     }
 
-    private static void playQuestion(Question que) throws IOException {
-        if (que == null) {
-            return;
-        }
-        System.out.println(que.getQuestionText());
+    private static boolean playQuestion(Question question) throws IOException {
+
+        System.out.println(question.getQuestionText());
         String answer;
 
-        if (que instanceof MultipleChoiceQuestion) {
-            List<String> options = ((MultipleChoiceQuestion) que).getOptions();
+        if (question instanceof MultipleChoiceQuestion) {
+            List<String> options = ((MultipleChoiceQuestion) question).getOptions();
             int answerIndex = getAnswerIndex(options);
+
+            if (answerIndex == Integer.MAX_VALUE) {
+                return true;
+            }
+
             answer = options.get(answerIndex);
         } else {
-
             System.out.print("Your answer:");
             answer = reader.readLine();
+
+            if (answer.equalsIgnoreCase("Quit")) {
+                return true;
+            }
         }
 
-        if (true == que.verifyAnswer(answer)) {
+        if (true == question.verifyAnswer(answer)) {
             System.out.println("You Answered correctly");
         } else {
             System.out.println("Wrong answer, The currect answer is:");
-            System.out.println(que.getAnswer());
+            System.out.println(question.getAnswer());
         }
+
+        return false;
     }
 }
