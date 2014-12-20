@@ -44,11 +44,40 @@ public class CategoryServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet CategoryServlet</title>");
+            out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"gameCategory/GameCatCSS.css\" media=\"screen\"> ");
             out.println("</head>");
             out.println("<body>");
             out.println("<form>");
+
             for (Category cat : Category.values()) {
-                out.println("<h1>Servlet CategoryServlet at " + cat + "</h1>");
+                
+                if (cat.name().equalsIgnoreCase("None"))
+                    continue;
+                    
+
+                out.println(" <div id=\"main_container\"> ");
+                out.println(" <div id=\"header\"> ");
+                out.println(" <div id=\"logo\"><a href=\"http://localhost:8084/WebTrivia/TriviaHomePage/TriviaHomePage.html\"><img src=\"images/trivia-challenge-small.jpg   \" alt=\"\" title=\"\" border=\"0\"  ></a></div> ");
+                out.println(" </div> ");
+                out.println(" <div id=\"main_content\"> ");
+                out.println(" <div id=\"main_header\"> ");
+                out.println("  <h2>" +cat+ "</h2> ");
+                out.println(" <p class=\"clear\"> ");
+                out.println(" <img src=\"images/pic1.jpg\" alt=\"\" title=\"\" class=\"left_img\"> ");
+                out.println("  Please choose difficulty for your questions: ");
+
+                out.println("  <form action=\"\"> ");
+                out.println(" <input  type=\"radio\" name=\"sex\" value=\"male\">Easy<br> ");
+                out.println(" <input type=\"radio\" name=\"sex\" value=\"female\">Moderate<br> ");
+                out.println(" <input type=\"radio\" name=\"sex\" value=\"female\">Difficult<br> ");
+                out.println("  </form>  ");
+                out.println("  </p>    ");
+
+                out.println("  </div> ");
+                out.println(" <div style=\" clear:both;\"></div> ");
+                out.println(" </div> ");
+                out.println(" </div> ");
+
             }
 
             out.println("</form>");
