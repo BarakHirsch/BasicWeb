@@ -31,7 +31,7 @@ public class ProcessGameServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            /* TODO output your page here. You may use following sample code. jnjnj */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
