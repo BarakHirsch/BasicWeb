@@ -59,7 +59,7 @@ public class CategoryServlet extends HttpServlet {
                 
                 out.println("<div id=\"main_content\">");
                 out.println("<h2>"+ cat +"</h2>");
-                out.println("<img src=\"gameCategory/images/pic1.jpg\" alt=\"\" title=\"\" class=\"left_img\">");
+                out.println("<img src=\"gameCategory/images/"+ cat +".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
                 out.println("<br>");
                 out.println("Please choose difficulty for your questions:<br>");
                 out.println("<input type=\"radio\" name=\"radioButton1\" value=\"Easy\" checked> Easy<br><br>");
