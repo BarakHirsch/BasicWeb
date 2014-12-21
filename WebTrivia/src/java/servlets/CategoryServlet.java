@@ -43,46 +43,49 @@ public class CategoryServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CategoryServlet</title>");
-            out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"gameCategory/GameCatCSS.css\" media=\"screen\"> ");
+            out.println("<title>Game category picking form</title>");
+            out.println("<meta charset=\"UTF-8\">");
+            out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"gameCategory/GameCatCSS.css\" media=\"screen\">");
             out.println("</head>");
             out.println("<body>");
-            out.println("<form>");
-
+            out.println("<form action=\"ProcessGameServlet\" method=\"POST\">");
+            out.println("<div id=\"main_container\">");
+            out.println("<div id=\"logo\"><a href=\"http://localhost:8084/WebTrivia/TriviaHomePage/TriviaHomePage.html\"><img src=\"gameCategory/images/trivia-challenge-small.jpg   \" alt=\"\" title=\"\" border=\"0\"  ></a></div>");
             for (Category cat : Category.values()) {
-                
-                if (cat.name().equalsIgnoreCase("None"))
+                if (cat.name().equalsIgnoreCase("None")) {
                     continue;
-                    
-
-                out.println(" <div id=\"main_container\"> ");
-                out.println(" <div id=\"header\"> ");
-                out.println(" <div id=\"logo\"><a href=\"http://localhost:8084/WebTrivia/TriviaHomePage/TriviaHomePage.html\"><img src=\"images/trivia-challenge-small.jpg   \" alt=\"\" title=\"\" border=\"0\"  ></a></div> ");
-                out.println(" </div> ");
-                out.println(" <div id=\"main_content\"> ");
-                out.println(" <div id=\"main_header\"> ");
-                out.println("  <h2>" +cat+ "</h2> ");
-                out.println(" <p class=\"clear\"> ");
-                out.println(" <img src=\"images/pic1.jpg\" alt=\"\" title=\"\" class=\"left_img\"> ");
-                out.println("  Please choose difficulty for your questions: ");
-
-                out.println("  <form action=\"\"> ");
-                out.println(" <input  type=\"radio\" name=\"sex\" value=\"male\">Easy<br> ");
-                out.println(" <input type=\"radio\" name=\"sex\" value=\"female\">Moderate<br> ");
-                out.println(" <input type=\"radio\" name=\"sex\" value=\"female\">Difficult<br> ");
-                out.println("  </form>  ");
-                out.println("  </p>    ");
-
-                out.println("  </div> ");
-                out.println(" <div style=\" clear:both;\"></div> ");
-                out.println(" </div> ");
-                out.println(" </div> ");
-
+                }
+                
+                out.println("<div id=\"main_content\">");
+                out.println("<h2>"+ cat +"</h2>");
+                out.println("<img src=\"gameCategory/images/pic1.jpg\" alt=\"\" title=\"\" class=\"left_img\">");
+                out.println("<br>");
+                out.println("Please choose difficulty for your questions:<br>");
+                out.println("<input type=\"radio\" name=\"radioButton1\" value=\"Easy\" checked> Easy<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton1\" value=\"Medium\" > Medium<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton1\" value=\"Hard\"> Hard<br><br>");
+                out.println("<div align=\"center\">");
+                out.println("<input type=\"checkbox\" name=\"GameCategory1\" value=\"GameCategory1\">Check if you like to play in this category<br>");
+                out.println("</div>");
+                out.println("</div>");
+                out.println("<hr>");
+                
             }
-
+            
+            out.println("<input type=\"submit\" value=\"Submit\">");
+            out.println("</div>");
             out.println("</form>");
             out.println("</body>");
             out.println("</html>");
+
+            for (Category cat : Category.values()) {
+
+                if (cat.name().equalsIgnoreCase("None")) {
+                    continue;
+                }
+
+            }
 
         }
     }
