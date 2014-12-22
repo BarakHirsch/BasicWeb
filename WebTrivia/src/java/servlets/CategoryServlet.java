@@ -16,24 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CategoryServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,11 +45,11 @@ public class CategoryServlet extends HttpServlet {
                 out.println("<img src=\"gameCategory/images/"+ cat +".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
                 out.println("<br>");
                 out.println("Please choose difficulty for your questions:<br>");
-                out.println("<input type=\"radio\" name=\"radioButton1\" value=\"Easy\" checked> Easy<br><br>");
-                out.println("<input type=\"radio\" name=\"radioButton1\" value=\"Medium\" > Medium<br><br>");
-                out.println("<input type=\"radio\" name=\"radioButton1\" value=\"Hard\"> Hard<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton"+cat+ "\" value=\"Easy\" checked> Easy<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton"+cat+"\" value=\"Medium\" > Medium<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton"+cat+"\" value=\"Hard\"> Hard<br><br>");
                 out.println("<div align=\"center\">");
-                out.println("<input type=\"checkbox\" name=\"GameCategory1\" value=\"GameCategory1\">Check if you like to play in this category<br>");
+                out.println("<input type=\"checkbox\" name=\"checkBox"+cat+"\" value=\""+cat+"Check\">Check if you like to play in this category<br>");
                 out.println("</div>");
                 out.println("</div>");
                 out.println("<hr>");
@@ -79,36 +62,19 @@ public class CategoryServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
 
-            for (Category cat : Category.values()) {
-
-                if (cat.name().equalsIgnoreCase("None")) {
-                    continue;
-                }
-
-            }
+            
 
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";
