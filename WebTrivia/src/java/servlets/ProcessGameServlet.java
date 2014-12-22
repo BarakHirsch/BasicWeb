@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import enums.*;
+import helpers.ParseHelper;
+import java.util.ArrayList;
+import logic.*;
 import java.util.Enumeration;
 
 public class ProcessGameServlet extends HttpServlet {
+    Manager manager = new Manager();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,11 +43,20 @@ public class ProcessGameServlet extends HttpServlet {
                 if (request.getParameter("checkBox"+cat)!=null)
                     cnt++;
         }
-        cnt++;
+        //String[] CatsChosenByUser = new String[cnt];
+        ArrayList<Category> categoriesToPlay = new ArrayList<>();
+        int i=0;
+            for (Category cat : Category.values())
+                if (request.getParameter("checkBox"+cat)!=null)
+                     categoriesToPlay.add(cat);
+//CatsChosenByUser[i++]=cat.toString()
+                   
+            
+         TriviaGame currentGame = manager.startGame(categoriesToPlay);   
         
         
         
-        
+              
         
         
         
