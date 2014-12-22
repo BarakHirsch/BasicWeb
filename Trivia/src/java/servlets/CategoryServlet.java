@@ -29,12 +29,11 @@ public class CategoryServlet extends HttpServlet {
             out.println("<title>Game category picking form</title>");
             out.println("<meta charset=\"UTF-8\">");
             out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"gameCategory/GameCatCSS.css\" media=\"screen\">");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"Css/GameCatCSS.css\" media=\"screen\">");
             out.println("</head>");
             out.println("<body>");
             out.println("<form action=\"ProcessGameServlet\" method=\"POST\">");
             out.println("<div id=\"main_container\">");
-            out.println("<div id=\"logo\"><a href=\"http://localhost:8084/WebTrivia/TriviaHomePage/TriviaHomePage.html\"><img src=\"gameCategory/images/trivia-challenge-small.jpg   \" alt=\"\" title=\"\" border=\"0\"  ></a></div>");
             for (Category cat : Category.values()) {
                 if (cat.name().equalsIgnoreCase("None")) {
                     continue;
@@ -42,7 +41,7 @@ public class CategoryServlet extends HttpServlet {
                 
                 out.println("<div id=\"main_content\">");
                 out.println("<h2>"+ cat +"</h2>");
-                out.println("<img src=\"gameCategory/images/"+ cat +".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
+                out.println("<img src=\"Images/"+ cat +".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
                 out.println("<br>");
                 out.println("Please choose difficulty for your questions:<br>");
                 out.println("<input type=\"radio\" name=\"radioButton"+cat+ "\" value=\"Easy\" checked> Easy<br><br>");
