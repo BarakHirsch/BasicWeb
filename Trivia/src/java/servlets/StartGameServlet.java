@@ -9,14 +9,16 @@ import enums.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.Manager;
+import logic.TriviaGame;
 
-public class CategoryServlet extends HttpServlet {
+public class StartGameServlet extends HttpServlet {
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,48 +34,57 @@ public class CategoryServlet extends HttpServlet {
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"Css/GameCatCSS.css\" media=\"screen\">");
             out.println("</head>");
             out.println("<body>");
-            out.println("<form action=\"ProcessGameServlet\" method=\"POST\">");
+            out.println("<form action=\"StartGameServlet\" method=\"POST\">");
             out.println("<div id=\"main_container\">");
             for (Category cat : Category.values()) {
-                if (cat.name().equalsIgnoreCase("None")) {
+                if (cat == Category.None) {
                     continue;
                 }
-                
+
                 out.println("<div id=\"main_content\">");
-                out.println("<h2>"+ cat +"</h2>");
-                out.println("<img src=\"Images/"+ cat +".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
+                out.println("<h2>" + cat + "</h2>");
+                out.println("<img src=\"Images/" + cat + ".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
                 out.println("<br>");
                 out.println("Please choose difficulty for your questions:<br>");
-                out.println("<input type=\"radio\" name=\"radioButton"+cat+ "\" value=\"Easy\" checked> Easy<br><br>");
-                out.println("<input type=\"radio\" name=\"radioButton"+cat+"\" value=\"Medium\" > Medium<br><br>");
-                out.println("<input type=\"radio\" name=\"radioButton"+cat+"\" value=\"Hard\"> Hard<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Easy\" checked> Easy<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Medium\" > Medium<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Hard\"> Hard<br><br>");
                 out.println("<div align=\"center\">");
-                out.println("<input type=\"checkbox\" name=\"checkBox"+cat+"\" value=\""+cat+"Check\">Check if you like to play in this category<br>");
+                out.println("<input type=\"checkbox\" name=\"checkBox" + cat + "\" value=\"" + cat + "Check\">Check if you like to play in this category<br>");
                 out.println("</div>");
                 out.println("</div>");
                 out.println("<hr>");
-                
+
             }
-            
+
             out.println("<input type=\"submit\" value=\"Submit\">");
             out.println("</div>");
             out.println("</form>");
             out.println("</body>");
             out.println("</html>");
 
-            
-
         }
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HashMap<Category, Difficulty> categoriesToPlay = new HashMap<>();
 
+        //TODO: Get from request
+        for (Category cat : Category.values()) {
+            if (request.getParameter("checkBox" + cat) != null) {
+                categoriesToPlay.put(cat, Difficulty.Easy);
+            }
+        }
+
+        TriviaGame currentGame = Manager.getInsance().startGame(categoriesToPlay);
+        
+        request.getSession().setAttribute("currGame", currentGame);
+        
+        response.sendRedirect("PlayServlet");
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";

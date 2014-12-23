@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet-mapping>
-        <servlet-name>ProcessGameServlet</servlet-name>
-        <url-pattern>/ProcessGameServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>QuestionsServlet</servlet-name>
-        <url-pattern>/QuestionsServlet</url-pattern>
+        <servlet-name>GameEndedServlet</servlet-name>
+        <url-pattern>/GameEndedServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,20 +10,23 @@
         </session-timeout>
     </session-config>
     <servlet>
-        <servlet-name>CategoryServlet</servlet-name>
-        <servlet-class>servlets.CategoryServlet</servlet-class>
+        <servlet-name>StartGameServlet</servlet-name>
+        <servlet-class>servlets.StartGameServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>QuestionsServlet</servlet-name>
-        <servlet-class>servlets.QuestionsServlet</servlet-class>
+        <servlet-name>PlayServlet</servlet-name>
+        <servlet-class>servlets.PlayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GameEndedServlet</servlet-name>
+        <servlet-class>servlets.GameEndedServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CategoryServlet</servlet-name>
-        <url-pattern>/CategoryServlet</url-pattern>
+        <servlet-name>StartGameServlet</servlet-name>
+        <url-pattern>/StartGameServlet</url-pattern>
     </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>ProcessGameServlet</servlet-name>
-        <servlet-class>servlets.ProcessGameServlet</servlet-class>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>PlayServlet</servlet-name>
+        <url-pattern>/PlayServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
