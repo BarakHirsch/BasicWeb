@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.Manager;
 import logic.TriviaGame;
+import helpers.ParseHelper;
 
 public class StartGameServlet extends HttpServlet {
 
@@ -74,7 +75,7 @@ public class StartGameServlet extends HttpServlet {
         //TODO: Get from request
         for (Category cat : Category.values()) {
             if (request.getParameter("checkBox" + cat) != null) {
-                categoriesToPlay.put(cat, Difficulty.Easy);
+                categoriesToPlay.put(cat, ParseHelper.parseDifficulty2(request.getParameter("radioButton" + cat)));
             }
         }
 

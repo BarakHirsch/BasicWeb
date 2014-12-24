@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.Manager;
 import models.MultipleChoiceQuestion;
 import models.Question;
 import models.YesNoQuestion;
@@ -42,16 +43,22 @@ public class AddQuestionServlet extends HttpServlet {
                 options.add(request.getParameter("answer3"));
                 que = new MultipleChoiceQuestion(diff, cat, questionText, options, Integer.parseInt(request.getParameter("radioButtonTrue")));
                 break;
-                
+
             case "Open":
                 que = new Question(diff, cat, questionText, request.getParameter("answer"));
                 break;
-            
-            case "YesNo":                
+
+            case "YesNo":
                 boolean isTrue = request.getParameter("radioButtonYesNo").equalsIgnoreCase("Yes");
                 que = new YesNoQuestion(diff, cat, questionText, isTrue);
                 break;
         }
+        if (que != null) {
+            Manager.getInsance().addQuestion(que);
+            Manager.getInsance().Save();
+            
+        }
+
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");

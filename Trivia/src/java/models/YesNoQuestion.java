@@ -7,6 +7,6 @@ import java.util.Arrays;
 public class YesNoQuestion extends MultipleChoiceQuestion {
 
     public YesNoQuestion(Difficulty difficulty, Category category, String questionText, boolean isTrue) {
-        super(difficulty, category, questionText, Arrays.asList(new String[]{"Yes", "No"}), isTrue ? 1 : 2);
+        super(difficulty, category, questionText, Arrays.asList(new String[]{"Yes", "No"}), isTrue ? 0 : 1);
     }
 }
