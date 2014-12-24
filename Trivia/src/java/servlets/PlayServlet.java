@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
@@ -14,36 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import logic.*;
 import models.*;
 
-/**
- *
- * @author Barda
- */
+
 public class PlayServlet extends HttpServlet {
 
-    private boolean wasCurrect;
+    private boolean wasCorrect;
     private boolean hasAnswerd;
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet QuestionsServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet QuestionsServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        
         TriviaGame currentGame = (TriviaGame) request.getSession().getAttribute("currGame");
 
         if (currentGame == null) {
@@ -69,8 +44,8 @@ public class PlayServlet extends HttpServlet {
             out.println("<body>");
 
             if (hasAnswerd) {
-                if (wasCurrect) {
-                    out.println("<h2>The answer was currect</h2>");
+                if (wasCorrect) {
+                    out.println("<h2>The answer was correct</h2>");
                 } else {
                     out.println("<h2>The answer was wrong</h2>");
                 }
@@ -105,7 +80,7 @@ public class PlayServlet extends HttpServlet {
         String answer = request.getParameter("answer");
 
         hasAnswerd = true;
-        wasCurrect = currentGame.CheckAnsewr(answer);
+        wasCorrect = currentGame.CheckAnsewr(answer);
         
         if (!currentGame.hasMoreQuestions()) {
             response.sendRedirect("GameEndedServlet");

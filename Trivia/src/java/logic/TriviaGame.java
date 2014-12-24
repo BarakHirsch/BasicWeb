@@ -38,7 +38,7 @@ public class TriviaGame {
     public boolean CheckAnsewr(String answer) {
         Question currQuestion = questionsInPlay.get(curIndex);
 
-        boolean wasCurrect = currQuestion.verifyAnswer(answer);
+        boolean wasCorrect = currQuestion.verifyAnswer(answer);
 
         Category category = currQuestion.getCategory();
 
@@ -48,12 +48,16 @@ public class TriviaGame {
             answersCount.put(category, 0);
         }
 
-        if (wasCurrect) {
+        if (wasCorrect) {
             answersCount.put(category, answersCount.get(category) + 1);
         }
         
         curIndex++;
         
-        return wasCurrect;
+        return wasCorrect;
+    }
+    
+    public HashMap getAnswersCount(){
+        return answersCount;
     }
 }

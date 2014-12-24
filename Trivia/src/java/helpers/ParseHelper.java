@@ -24,6 +24,18 @@ public class ParseHelper {
         return values[parsedNumber];
     }
 
+    public static Difficulty parseDifficulty2(String input) {
+        switch (input) {
+            case "Easy":
+                return Difficulty.Easy;
+            case "Medium":
+                return Difficulty.Medium;
+            case "Hard":
+                return Difficulty.Hard;
+        }
+        return Difficulty.None;
+    }
+
     public static Difficulty parseDifficulty(String input) {
 
         Difficulty[] values = Difficulty.values();
@@ -46,5 +58,19 @@ public class ParseHelper {
         }
 
         return values[parsedNumber];
+    }
+
+    public static Category parseCategory2(String input) {
+        switch (input) {
+            case "General":
+                return Category.General;
+            case "Geography":
+                return Category.Geography;
+            case "History":
+                return Category.History;
+            case "Sports":
+                return Category.Sports;
+        }
+        return Category.None;
     }
 }

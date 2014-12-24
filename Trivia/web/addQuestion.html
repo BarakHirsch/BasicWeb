@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Add a question page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #header{
+                background-color:black;
+                color:white;
+                text-align:center;
+                padding:3px;
+                font: 15px  verdana, arial, helvetica;
+            }
+            #h2_{
+                font: 10px  verdana, arial, helvetica;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+        <form action="AddQuestionServlet" method="POST">
+            <div id="header"><h1>Add a Question page</h1></div>
+            <div id="h2_">
+                <h2>Please pick the difficulty of your question</h2>
+                <input type="radio" name="radioButtonDiff" value="Easy" checked>Easy<br>
+                <input type="radio" name="radioButtonDiff" value="Medium" >Medium<br>
+                <input type="radio" name="radioButtonDiff" value="Hard">Hard<br>
+                <h2>Please pick the category of your question</h2> 
+                <input type="radio" name="radioButtonCat" value="General" checked>General<br>
+                <input type="radio" name="radioButtonCat" value="Geography" >Geography<br>
+                <input type="radio" name="radioButtonCat" value="History">History<br>
+                <input type="radio" name="radioButtonCat" value="History">Sports<br>
+                <h2>Please pick the question type</h2>
+                <input type="radio" name="radioButtonType" value="Multiple" checked>Multiple choice question<br>
+                <input type="radio" name="radioButtonType" value="Open" >Open question<br>
+                <input type="radio" name="radioButtonType" value="YesNo">Yes/No question<br>
+                <h2>Please insert the question</h2>
+                <input type="text" name="question" value=""><br>
+                 
+                <h2><input type="submit" name="submit" value="click here"></h2>
+            </div>
+        </form>
+    </body>
+</html>
