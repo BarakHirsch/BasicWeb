@@ -57,7 +57,7 @@ public class TriviaGame {
         return wasCorrect;
     }
     
-    public HashMap getAnswersCount(){
+    public HashMap<Category, Integer> getAnswersCount(){
         return answersCount;
     }
 }

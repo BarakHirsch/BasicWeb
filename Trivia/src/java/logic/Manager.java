@@ -28,12 +28,12 @@ public class Manager {
         try {
             questions = fileManager.Load();
         } catch (FileNotFoundException ex) {
-            // Doesn't suppose to happen but ok...
+            //Doesn't suppose to happen but ok...
         } catch (IOException ex) {
-            //System.err.println("Failed to read save file");
+            System.err.println("Failed to read save file");
             questions = null;
         } catch (ClassNotFoundException ex) {
-            //System.err.println("Failed to read data, ClassNotFoundException");
+            System.err.println("Failed to read data, ClassNotFoundException");
             questions = null;
         }
         // Some error occurd (maybe file not found and stuff) initiate a new save
@@ -46,9 +46,9 @@ public class Manager {
         try {
             fileManager.Save(questions);
         } catch (FileNotFoundException ex) {
-            //System.err.println("Failed to find save file");
+            System.err.println("Failed to find save file");
         } catch (IOException ex) {
-            //System.err.println("Failed to write to save file");
+            System.err.println("Failed to write to save file");
         }
     }
 
@@ -69,7 +69,7 @@ public class Manager {
 
         for (Question question : questions) {
             Difficulty selectedDifficulty = categories.get(question.getCategory());
-            
+
             if (selectedDifficulty != null && selectedDifficulty == question.getDifficulty()) {
                 filteredQuestions.add(question);
             }
