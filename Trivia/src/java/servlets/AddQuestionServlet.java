@@ -63,9 +63,44 @@ public class AddQuestionServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet AddQuestionServlet</title>");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"Css/GameCatCSS.css\" media=\"screen\">");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddQuestionServlet at " + "question added" + "</h1>");
+            
+           out.println("<div id=\"main_container\">");
+           out.println(" <div id=\"logo\">");
+           
+           out.println("<img src=\"Images/trivia-challenge-small.jpg\" alt=\"\" title=\"\" border=\"0\"  />");
+           out.println("</a>");
+           out.println("</div>");
+           out.println("<div id=\"main_content\">");
+           out.println("<h2>Your question was added successfully </h2>");
+           out.println(" <br>");
+           out.println("</div>");
+           out.println("  </div>");
+           
+           
+        
+            
+               
+                    
+                        
+                    
+                
+                
+                    
+                    
+                   
+                    
+                    
+                   
+                
+          
+    
+
+            
+            
+            
             out.println("</body>");
             out.println("</html>");
         }

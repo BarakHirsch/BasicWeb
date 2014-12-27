@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<style>");
             out.println("#loginSection{background-color:black;color:white;text-align:left;font: 10px  verdana, arial, helvetica;}");
             out.println("#header {background-color:black;color:white;text-align:center;padding:5px;font: 30px  verdana, arial, helvetica;}");
-            out.println("#nav {line-height:30px;background-color:#eeeeee;height:300px;width:100px;float:left;padding:5px;font: 15px  verdana, arial, helvetica;}");
+            out.println("#nav {line-height:30px;background-color:#eeeeee;height:500px;width:100px;float:left;padding:5px;font: 12px  verdana, arial, helvetica;}");
             out.println("#section {width:350px;float:left;padding:10px;font: 20px  verdana, arial, helvetica;}");
             out.println("#footer {background-color:black;color:white;clear:both;text-align:center;padding:5px;font: 20px  verdana, arial, helvetica;}");
             out.println("</style>");
@@ -106,7 +106,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<style>");
             out.println("#loginSection{background-color:black;color:white;text-align:left;font: 10px  verdana, arial, helvetica;}");
             out.println("#header {background-color:black;color:white;text-align:center;padding:5px;font: 30px  verdana, arial, helvetica;}");
-            out.println("#nav {line-height:30px;background-color:#eeeeee;height:300px;width:100px;float:left;padding:5px;font: 15px  verdana, arial, helvetica;}");
+            out.println("#nav {line-height:30px;background-color:#eeeeee;height:500px;width:100px;float:left;padding:5px;font: 12px  verdana, arial, helvetica;}");
             out.println("#section {width:350px;float:left;padding:10px;font: 20px  verdana, arial, helvetica;}");
             out.println("#footer {background-color:black;color:white;clear:both;text-align:center;padding:5px;font: 20px  verdana, arial, helvetica;}");
             out.println("</style>");
