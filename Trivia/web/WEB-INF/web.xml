@@ -4,6 +4,10 @@
         <servlet-name>AddQuestionServlet</servlet-name>
         <servlet-class>servlets.AddQuestionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlets.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GameEndedServlet</servlet-name>
         <url-pattern>/GameEndedServlet</url-pattern>
@@ -11,6 +15,10 @@
     <servlet-mapping>
         <servlet-name>AddQuestionServlet</servlet-name>
         <url-pattern>/AddQuestionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
