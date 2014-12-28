@@ -75,9 +75,9 @@ public class AddQuestionServlet extends HttpServlet {
            out.println("</div>");
            out.println("<div id=\"main_content\">");
            out.println("<h2>Your question was added successfully </h2>");
-           out.println(" <br>");
+           out.println("<br>");
            out.println("</div>");
-           out.println("  </div>");
+           out.println("</div>");
            
            
         

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import logic.*;
 import models.*;
 
-
 public class PlayServlet extends HttpServlet {
 
     private boolean wasCorrect;
@@ -18,7 +17,7 @@ public class PlayServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         TriviaGame currentGame = (TriviaGame) request.getSession().getAttribute("currGame");
 
         if (currentGame == null) {
@@ -55,9 +54,13 @@ public class PlayServlet extends HttpServlet {
             out.println("<form action=\"PlayServlet\" method=\"POST\">");
 
             out.println("<input type=\"text\" name=\"answer\" ></input>");
-            
+
             out.println("<input type=\"submit\" value=\"Submit\">");
 
+            out.println("</form>");
+
+            out.println("<form action=\"GameEndedServlet\">");
+            out.println("<input type=\"submit\" value=\"Quit\">");
             out.println("</form>");
 
             out.println("</body>");
@@ -81,7 +84,7 @@ public class PlayServlet extends HttpServlet {
 
         hasAnswerd = true;
         wasCorrect = currentGame.CheckAnsewr(answer);
-        
+
         if (!currentGame.hasMoreQuestions()) {
             response.sendRedirect("GameEndedServlet");
             return;

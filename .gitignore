@@ -23,3 +23,5 @@ Trivia/nbproject/private
 /WebTrivia/nbproject/private/
 /WebTrivia/build/
 apache-tomcat-7.0.57/conf/Catalina/localhost
+Trivia/src/java/*/*.orig
+/Trivia/dist/
