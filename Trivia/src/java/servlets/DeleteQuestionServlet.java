@@ -75,6 +75,8 @@ public class DeleteQuestionServlet extends HttpServlet {
 
         Manager.getInsance().deleteQuestion(question);
 
+        Manager.getInsance().Save();
+        
         doGet(request, response);
     }
 }

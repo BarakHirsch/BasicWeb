@@ -52,10 +52,10 @@ public class AddQuestionServlet extends HttpServlet {
                 que = new YesNoQuestion(diff, cat, questionText, isTrue);
                 break;
         }
+        
         if (que != null) {
             Manager.getInsance().addQuestion(que);
             Manager.getInsance().Save();
-            
         }
 
         try (PrintWriter out = response.getWriter()) {
@@ -78,29 +78,6 @@ public class AddQuestionServlet extends HttpServlet {
            out.println("<br>");
            out.println("</div>");
            out.println("</div>");
-           
-           
-        
-            
-               
-                    
-                        
-                    
-                
-                
-                    
-                    
-                   
-                    
-                    
-                   
-                
-          
-    
-
-            
-            
-            
             out.println("</body>");
             out.println("</html>");
         }

@@ -53,7 +53,15 @@ public class PlayServlet extends HttpServlet {
             out.println("<h2>" + que.getQuestionText() + "</h2>");
             out.println("<form action=\"PlayServlet\" method=\"POST\">");
 
-            out.println("<input type=\"text\" name=\"answer\" ></input>");
+            if (que instanceof MultipleChoiceQuestion) {
+                MultipleChoiceQuestion multi = (MultipleChoiceQuestion) que;
+                for (String option : multi.getOptions()) {
+                    out.println("<input  type=\"radio\" name=\"answer\" value =\"" + option + "\">" + option + "<br>");
+                }
+
+            } else {
+                out.println("<input type=\"text\" name=\"answer\" ></input>");
+            }
 
             out.println("<input type=\"submit\" value=\"Submit\">");
 
@@ -82,12 +90,14 @@ public class PlayServlet extends HttpServlet {
 
         String answer = request.getParameter("answer");
 
-        hasAnswerd = true;
-        wasCorrect = currentGame.CheckAnsewr(answer);
+        if (answer != null && !"".equals(answer)) {
+            hasAnswerd = true;
+            wasCorrect = currentGame.CheckAnsewr(answer);
 
-        if (!currentGame.hasMoreQuestions()) {
-            response.sendRedirect("GameEndedServlet");
-            return;
+            if (!currentGame.hasMoreQuestions()) {
+                response.sendRedirect("GameEndedServlet");
+                return;
+            }
         }
 
         doGet(request, response);
