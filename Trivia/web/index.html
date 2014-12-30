@@ -12,18 +12,25 @@
                 padding:1px;
                 font: 30px  verdana, arial, helvetica;
             }
+            #headerLogin {
+                background-color:black;
+                color:white;
+                text-align:left;
+                font: 15px  verdana, arial, helvetica;
+            }
             
             #nav {
                 line-height:30px;
                 background-color:#eeeeee;
-                height:300px;
-                width:100px;
+                height:600px;
+                width:120px;
                 float:left;
                 padding:5px;
-                font: 15px  verdana, arial, helvetica;
+                font: 12px  verdana, arial, helvetica;
             }
             #section {
-                width:350px;
+                
+                height:600px;
                 float:left;
                 padding:10px;
                 font: 15px  verdana, arial, helvetica;
@@ -45,11 +52,13 @@
 
 
         <div id="header">
-            <h1>Trivia</h1>
+            <h1>Trivia</h1>            
             
-            <iframe frameborder="1" name="UserInfoFrame" width="800" height="50" src="UserInfoServlet">
+            
+        </div>
+        <div id="headerLogin">
+            <iframe frameborder="0" name="UserInfoFrame" width="500" height="50" src="UserInfoServlet">
             </iframe>
-            
         </div>
 
         <div id="nav">
@@ -61,7 +70,7 @@
         </div>
 
         <div id="section">
-            <iframe frameborder="0" name="sectionFrame" width="1000" height="500">
+            <iframe frameborder="0" name="sectionFrame" width="1200" height="600">
 
             </iframe>
         </div>

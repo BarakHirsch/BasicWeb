@@ -32,7 +32,11 @@ public class StartGameServlet extends HttpServlet {
             out.println("<title>Game category picking form</title>");
             out.println("<meta charset=\"UTF-8\">");
             out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"Css/GameCatCSS.css\" media=\"screen\">");
+            //out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"Css/GameCatCSS.css\" media=\"screen\">");
+            out.println("<style>");
+            out.println("h2 {color:black;font: 30px  verdana, arial, helvetica;}");
+            out.println("body {color:black;font: 20px  verdana, arial, helvetica;}");
+            out.println("</style>");
             out.println("</head>");
             out.println("<body>");
             out.println("<form action=\"StartGameServlet\" method=\"POST\">");
@@ -46,7 +50,7 @@ public class StartGameServlet extends HttpServlet {
                 out.println("<h2>" + cat + "</h2>");
                 out.println("<img src=\"Images/" + cat + ".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
                 out.println("<br>");
-                out.println("Please choose difficulty for your questions:<br>");
+                out.println("Please choose difficulty for your questions:<br><br>");
                 out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Easy\" checked> Easy<br><br>");
                 out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Medium\" > Medium<br><br>");
                 out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Hard\"> Hard<br><br>");
@@ -78,11 +82,8 @@ public class StartGameServlet extends HttpServlet {
                 categoriesToPlay.put(cat, ParseHelper.parseDifficulty2(request.getParameter("radioButton" + cat)));
             }
         }
-
         TriviaGame currentGame = Manager.getInsance().startGame(categoriesToPlay);
-        
-        request.getSession().setAttribute("currGame", currentGame);
-        
+        request.getSession().setAttribute("currGame", currentGame);        
         response.sendRedirect("PlayServlet");
     }
 

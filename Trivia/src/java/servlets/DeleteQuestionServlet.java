@@ -31,6 +31,9 @@ public class DeleteQuestionServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet QuestionsServlet</title>");
+            out.println("<style>");
+            out.println("h3 {color:black;font: 14px  verdana, arial, helvetica;}");
+            out.println("</style>");
             out.println("</head>");
             out.println("<body>");
 

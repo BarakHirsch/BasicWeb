@@ -34,40 +34,48 @@ public class PlayServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet QuestionsServlet</title>");
+            
+            out.println("<style>");
+            out.println("h2 {color:black;font: 30px  verdana, arial, helvetica;}");
+            out.println("h3 {color:black;font: 20px  verdana, arial, helvetica;}");
+            out.println("</style>");
             out.println("</head>");
             out.println("<body>");
+            
 
             if (hasAnswerd) {
                 if (wasCorrect) {
-                    out.println("<h2>The answer was correct</h2>");
+                    out.println("<h2>The answer was correct!</h2>");
                 } else {
-                    out.println("<h2>The answer was wrong</h2>");
+                    out.println("<h2>The answer was wrong!</h2>");
                 }
             }
 
-            out.println("<h2>" + que.getQuestionText() + "</h2>");
+            out.println("<h3>" + que.getQuestionText() + "</h3>");
             out.println("<form action=\"PlayServlet\" method=\"POST\">");
 
             if (que instanceof MultipleChoiceQuestion) {
                 MultipleChoiceQuestion multi = (MultipleChoiceQuestion) que;
                 for (String option : multi.getOptions()) {
-                    out.println("<input  type=\"radio\" name=\"answer\" value =\"" + option + "\">" + option + "<br>");
+                    out.println("<h3> <input  type=\"radio\" name=\"answer\" value =\"" + option + "\">" + option + "</h3><br>");
                 }
 
             } else {
-                out.println("<input type=\"text\" name=\"answer\" ></input>");
+                out.println("<input type=\"text\" name=\"answer\" ></input> ");
             }
-
-            out.println("<input type=\"submit\" value=\"Submit\">");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<input type=\"submit\" value=\"Submit\"> ");
 
             out.println("</form>");
 
             out.println("<form action=\"GameEndedServlet\">");
+            out.println("<br>");
+            out.println("<br>");
             out.println("<input type=\"submit\" value=\"Quit\">");
             out.println("</form>");
 

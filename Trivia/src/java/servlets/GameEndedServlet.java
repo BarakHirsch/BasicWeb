@@ -27,14 +27,18 @@ public class GameEndedServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>TODO Set Title</title>");
+            out.println("<title>Game ended Servlet</title>");
+            out.println("<style>");
+            out.println("h1 {color:black;font: 40px  verdana, arial, helvetica;}");
+            out.println("h3 {color:black;font: 20px  verdana, arial, helvetica;}");
+            out.println("</style>");
             out.println("</head>");
             out.println("<body>");
 
-            out.println("<h1>The game is over!</h1>");
+            out.println("<h1>Game Over!</h1>");
 
             for (Map.Entry<Category, Integer> answerCount : currentGame.getAnswersCount().entrySet()) {
-                out.println("<h3>In the category " + answerCount.getKey()+ " you answerd " + answerCount.getValue()+ " questions</h3>");
+                out.println("<h3>In " + answerCount.getKey()+ " category, you answerd " + answerCount.getValue()+ " questions correctly.</h3>");
             }
 
             out.println("</body>");
