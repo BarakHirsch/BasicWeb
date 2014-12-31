@@ -44,6 +44,7 @@ public class DeleteQuestionServlet extends HttpServlet {
 
                 out.println("<form action=\"DeleteQuestionServlet\" method=\"POST\">");
 
+                out.print("<h3>Category: " + question.getCategory() + " Difficulty: " + question.getDifficulty() + "</h3>");
                 out.print("<h3>" + question.getQuestionText() + "</h3>");
 
                 out.print("<input type=\"submit\" value=\"Delete\">");
@@ -79,7 +80,7 @@ public class DeleteQuestionServlet extends HttpServlet {
         Manager.getInsance().deleteQuestion(question);
 
         Manager.getInsance().Save();
-        
+
         doGet(request, response);
     }
 }

@@ -38,14 +38,13 @@ public class PlayServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet QuestionsServlet</title>");
-            
+
             out.println("<style>");
             out.println("h2 {color:black;font: 30px  verdana, arial, helvetica;}");
             out.println("h3 {color:black;font: 20px  verdana, arial, helvetica;}");
             out.println("</style>");
             out.println("</head>");
             out.println("<body>");
-            
 
             if (hasAnswerd) {
                 if (wasCorrect) {
@@ -61,21 +60,20 @@ public class PlayServlet extends HttpServlet {
             if (que instanceof MultipleChoiceQuestion) {
                 MultipleChoiceQuestion multi = (MultipleChoiceQuestion) que;
                 for (String option : multi.getOptions()) {
-                    out.println("<h3> <input  type=\"radio\" name=\"answer\" value =\"" + option + "\">" + option + "</h3><br>");
+                    out.println("<h4> <input  type=\"radio\" name=\"answer\" value =\"" + option + "\">" + option + "</h4>");
                 }
 
             } else {
-                out.println("<input type=\"text\" name=\"answer\" ></input> ");
+                out.println("<input type=\"text\" name=\"answer\" /> ");
             }
-            out.println("<br>");
             out.println("<br>");
             out.println("<input type=\"submit\" value=\"Submit\"> ");
 
             out.println("</form>");
-
+            out.println("<br>");
+            out.println("<br>");
+            
             out.println("<form action=\"GameEndedServlet\">");
-            out.println("<br>");
-            out.println("<br>");
             out.println("<input type=\"submit\" value=\"Quit\">");
             out.println("</form>");
 

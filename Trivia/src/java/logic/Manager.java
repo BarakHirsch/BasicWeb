@@ -75,6 +75,6 @@ public class Manager {
             }
         }
 
-        return new TriviaGame(filteredQuestions);
+        return new TriviaGame(categories.keySet(),filteredQuestions);
     }
 }
