@@ -32,12 +32,13 @@ public class DeleteQuestionServlet extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet QuestionsServlet</title>");
             out.println("<style>");
+            out.println("h2 {color:black;font: 22px  verdana, arial, helvetica;}");
             out.println("h3 {color:black;font: 14px  verdana, arial, helvetica;}");
             out.println("</style>");
             out.println("</head>");
             out.println("<body>");
 
-            out.println("<h2>Select question to delete:</h2>");
+            out.println("<h2>Click Delete for each question you would like to delete:</h2>");
 
             for (int i = 0; i < questions.length; i++) {
                 Question question = questions[i];

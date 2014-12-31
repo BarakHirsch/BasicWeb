@@ -60,6 +60,9 @@ public class UserInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        if ((request.getParameter("firstName").isEmpty() ) || (request.getParameter("lastName").isEmpty()))
+                response.sendRedirect("LoginServlet");
+        
         Cookie userNameCookie = new Cookie("UserName", request.getParameter("firstName") +" "+ request.getParameter("lastName"));
         userNameCookie.setMaxAge(60 * 60 * 24);
         response.addCookie(userNameCookie);

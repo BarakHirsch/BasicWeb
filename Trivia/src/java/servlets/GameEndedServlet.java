@@ -4,8 +4,10 @@ import enums.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
+import helpers.UserHelper;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,20 +41,10 @@ public class GameEndedServlet extends HttpServlet {
             out.println("<body>");
 
             out.println("<h1>Game Over!</h1>");
-
-            HashMap<Category, Integer> askedCount = currentGame.getAskedCount();
-            HashMap<Category, Integer> answersCount = currentGame.getAnswersCount();
-
-            for (Category category : currentGame.getCategories()) {
-                out.println("<h3>In " + category + " you were asked " + askedCount.get(category) + " questions and answerd " + answersCount.get(category) + " correctly.</h3>");
-            }
-
-            Cookie[] cookies = request.getCookies();
-            for (Cookie c : cookies) {
-                if (c.getName().equals("UserName")) {
-                    out.println("<h4>Thank you for playing, " + c.getValue() + "</h4>");
-                }
-            }
+            for (Map.Entry<Category, Integer> answerCount : currentGame.getAnswersCount().entrySet()) {
+                out.println("<h3>In " + answerCount.getKey()+ " category, you answerd " + answerCount.getValue()+ " questions correctly.</h3>");
+            }                        
+            out.println("<h4>Thank you for playing, <h5>"+ UserHelper.getUserName(request) + "</h5></h4>");                                                           
 
             out.println("</body>");
             out.println("</html>");
