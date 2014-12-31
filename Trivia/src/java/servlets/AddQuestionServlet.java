@@ -87,8 +87,8 @@ public class AddQuestionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.diff = ParseHelper.parseDifficulty2(request.getParameter("radioButtonDiff"));
-        this.cat = ParseHelper.parseCategory2(request.getParameter("radioButtonCat"));
+        this.diff = ParseHelper.parseDifficulty(request.getParameter("radioButtonDiff"));
+        this.cat = ParseHelper.parseCategory(request.getParameter("radioButtonCat"));
         this.questionText = request.getParameter("question");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

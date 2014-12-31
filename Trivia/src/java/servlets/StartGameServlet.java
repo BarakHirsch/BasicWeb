@@ -51,9 +51,9 @@ public class StartGameServlet extends HttpServlet {
                 out.println("<img src=\"Images/" + cat + ".jpg\" alt=\"\" title=\"\" class=\"left_img\">");
                 out.println("<br>");
                 out.println("Please choose difficulty for your questions:<br><br>");
-                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Easy\" checked> Easy<br><br>");
-                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Medium\" > Medium<br><br>");
-                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"Hard\"> Hard<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"" + Difficulty.Easy.ordinal() + "\" checked> Easy<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"" + Difficulty.Medium.ordinal() + "\" > Medium<br><br>");
+                out.println("<input type=\"radio\" name=\"radioButton" + cat + "\" value=\"" + Difficulty.Hard.ordinal() + "\"> Hard<br><br>");
                 out.println("<div align=\"center\">");
                 out.println("<input type=\"checkbox\" name=\"checkBox" + cat + "\" value=\"" + cat + "Check\">Check if you like to play in this category<br>");
                 out.println("</div>");
@@ -76,10 +76,9 @@ public class StartGameServlet extends HttpServlet {
             throws ServletException, IOException {
         HashMap<Category, Difficulty> categoriesToPlay = new HashMap<>();
 
-        //TODO: Get from request
         for (Category cat : Category.values()) {
             if (request.getParameter("checkBox" + cat) != null) {
-                categoriesToPlay.put(cat, ParseHelper.parseDifficulty2(request.getParameter("radioButton" + cat)));
+                categoriesToPlay.put(cat, ParseHelper.parseDifficulty(request.getParameter("radioButton" + cat)));
             }
         }
         TriviaGame currentGame = Manager.getInsance().startGame(categoriesToPlay);
