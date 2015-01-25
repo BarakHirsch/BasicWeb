@@ -19,7 +19,7 @@
             Object wasCorrect = request.getAttribute("wasCorrect");
 
             if (wasCorrect != null) {
-                if ((boolean) wasCorrect) {
+                if ((Boolean) wasCorrect) {
         %>
         <h2>The answer was correct!</h2>
         <%
