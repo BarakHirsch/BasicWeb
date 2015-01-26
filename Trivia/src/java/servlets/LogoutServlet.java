@@ -25,7 +25,7 @@ public class LogoutServlet extends HttpServlet {
     public void HandleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UserHelper.LogoutUser(request);
 
-        request.getRequestDispatcher("Logout.html").forward(request, response);
+        request.getRequestDispatcher("UserInfoServlet").forward(request, response);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package helpers;
 
+import static helpers.Constants.USER_ATTRIBUTE;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import models.User;
@@ -7,7 +8,7 @@ import models.User;
 public class UserHelper {
 
     public static User getUser(HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("User");
+        User user = (User) request.getSession().getAttribute(USER_ATTRIBUTE);
 
         if (user != null) {
             return new User(user.getName(), true);
@@ -17,7 +18,7 @@ public class UserHelper {
     }
 
     public static void LoadUserToSession(HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("User");
+        User user = (User) request.getSession().getAttribute(USER_ATTRIBUTE);
         if (user != null) {
             return;
         }
@@ -29,7 +30,7 @@ public class UserHelper {
         }
 
         for (Cookie c : cookies) {
-            if ((c.getName().equals("User"))) {
+            if ((c.getName().equals(USER_ATTRIBUTE))) {
 
                 user = new User();
 
@@ -40,16 +41,16 @@ public class UserHelper {
 
     public static void LoadUserToSession(HttpServletRequest request, User user) {
 
-        request.getSession().setAttribute("User", user);
+        request.getSession().setAttribute(USER_ATTRIBUTE, user);
     }
 
     public static void LogoutUser(HttpServletRequest request) {
-        request.getSession().setAttribute("User", null);
+        request.getSession().setAttribute(USER_ATTRIBUTE, null);
 
         Cookie[] cookies = request.getCookies();
 
         for (Cookie c : cookies) {
-            if ((c.getName().equals("User"))) {
+            if ((c.getName().equals(USER_ATTRIBUTE))) {
                 c.setMaxAge(0);
                 break;
             }

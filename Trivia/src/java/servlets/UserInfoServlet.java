@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import static helpers.Constants.*;
 import helpers.UserHelper;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class UserInfoServlet extends HttpServlet {
 
         UserHelper.LoadUserToSession(request);
 
-        request.setAttribute("User", UserHelper.getUser(request));
+        request.setAttribute(USER_ATTRIBUTE, UserHelper.getUser(request));
 
         request.getRequestDispatcher("UserInfo.jsp").forward(request, response);
     }
@@ -42,13 +43,13 @@ public class UserInfoServlet extends HttpServlet {
 
         user.setName(userName);
 
-        Cookie userNameCookie = new Cookie("User", userName);
+        Cookie userNameCookie = new Cookie(USER_ATTRIBUTE, userName);
         userNameCookie.setMaxAge(60 * 60 * 24);
         response.addCookie(userNameCookie);
 
         UserHelper.LoadUserToSession(request, user);
 
-        request.setAttribute("User", UserHelper.getUser(request));
+        request.setAttribute(USER_ATTRIBUTE, UserHelper.getUser(request));
 
         request.getRequestDispatcher("UserInfo.jsp").forward(request, response);
     }

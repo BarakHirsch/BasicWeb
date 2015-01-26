@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="models.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,19 +10,19 @@
         <style>
             h3 {color:white;font: 14px  verdana, arial, helvetica;}
         </style>
-        <%
-            User user = (User) request.getAttribute("User");
-        %>
+
+        <jsp:useBean id="user" type="models.User" scope="request" />
     </head>
     <body>
-        <h3>Hello, <%= user.getName() %> <%
-                if (user.isLoggedIn()) {
-                    out.print("<a href=\"LogoutServlet\" target=\"_self\">(Logout)</a>");
-                } else {
-
-                    out.print(" <a href=\"Login.jsp\" target=\"_self\">(Login)</a>");
-                }
-            %>
+        <h3>Hello, <jsp:getProperty name="user" property="name" />
+            <c:choose>
+                <c:when test="${user.loggedIn}">
+                <a href="LogoutServlet" target="_self">(Logout)</a>
+                </c:when>
+                <c:otherwise>
+                <a href="Login.jsp" target="_self">(Login)</a>
+                </c:otherwise>
+            </c:choose>
         </h3>
     </body>
 </html>

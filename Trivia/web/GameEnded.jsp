@@ -1,9 +1,4 @@
-<%-- 
-    Document   : GameEnded
-    Created on : Jan 24, 2015, 12:01:36 PM
-    Author     : Barak
---%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="logic.TriviaGame"%>
 <%@page import="helpers.UserHelper"%>
 <%@page import="java.util.HashMap"%>
@@ -15,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <title>Game ended</title>
+        <title>Game end</title>
         <style>
             h1 {color:black;font: 40px  verdana, arial, helvetica;}
             h3 {color:black;font: 20px  verdana, arial, helvetica;}
@@ -26,18 +21,13 @@
     <body>
 
         <h1>Game Over!</h1>
-        <%
-            TriviaGame currentGame = (TriviaGame) request.getAttribute("currGame");
-
-            HashMap<Category, Integer> askedCount = currentGame.getAskedCount();
-            HashMap<Category, Integer> answersCount = currentGame.getAnswersCount();
-
-            for (Category category : currentGame.getCategories()) {
-        %>
-        <h3>In <%=category%> you were asked <%=askedCount.get(category)%> questions and answered <%=answersCount.get(category)%> correctly.</h3>
-        <%
-            }
-        %>
+        
+        <jsp:useBean id="currGame" type="logic.TriviaGame" scope="request" />
+        
+        <c:forEach items="${currGame.categories}" var="category" >
+            <h3>In ${category} you were asked ${currGame.askedCount.get(category)} questions and answered ${currGame.answersCount.get(category)} correctly.</h3>
+        </c:forEach>
+       
         <h4>Thank you for playing, <%=UserHelper.getUser(request).getName()%></h4>
 
     </body>
