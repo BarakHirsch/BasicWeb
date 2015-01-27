@@ -1,17 +1,16 @@
 package logic;
 
+import Dal.QuestionDB;
 import java.util.ArrayList;
 import models.Question;
 import enums.Category;
 import enums.Difficulty;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.util.List;
+import java.sql.SQLException;
 import java.util.Map;
 
 public class Manager {
 
-    public final FileManager<ArrayList<Question>> fileManager;
+    public final QuestionDB questionsDb;
     private ArrayList<Question> questions;
     private static Manager manager;
 
@@ -24,44 +23,19 @@ public class Manager {
     }
 
     private Manager() {
-        fileManager = new FileManager<>("SavedGame.dat");
-        try {
-            questions = fileManager.Load();
-        } catch (FileNotFoundException ex) {
-            //Doesn't suppose to happen but ok...
-        } catch (IOException ex) {
-            System.err.println("Failed to read save file");
-            questions = null;
-        } catch (ClassNotFoundException ex) {
-            System.err.println("Failed to read data, ClassNotFoundException");
-            questions = null;
-        }
-        // Some error occurd (maybe file not found and stuff) initiate a new save
-        if (questions == null) {
-            questions = new ArrayList<>();
-        }
-    }
-
-    public void Save() {
-        try {
-            fileManager.Save(questions);
-        } catch (FileNotFoundException ex) {
-            System.err.println("Failed to find save file");
-        } catch (IOException ex) {
-            System.err.println("Failed to write to save file");
-        }
+        questionsDb = new QuestionDB();
     }
 
     public Question[] getQuestions() {
-        return questions.toArray(new Question[questions.size()]);
+        return questionsDb.getAllQuestions();
     }
-    
+
     public void deleteQuestion(Question question) {
-        questions.remove(question);
+        questionsDb.deleteQuestion(question);
     }
 
     public void addQuestion(Question question) {
-        questions.add(question);
+        questionsDb.addQuestion(question);
     }
 
     public TriviaGame startGame(Map<Category, Difficulty> categories) {
@@ -75,6 +49,6 @@ public class Manager {
             }
         }
 
-        return new TriviaGame(categories.keySet(),filteredQuestions);
+        return new TriviaGame(categories.keySet(), filteredQuestions);
     }
 }

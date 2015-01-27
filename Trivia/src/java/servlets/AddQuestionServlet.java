@@ -4,7 +4,9 @@ import enums.Category;
 import enums.Difficulty;
 import helpers.ParseHelper;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +31,16 @@ public class AddQuestionServlet extends HttpServlet {
         HandleRequest(request, response);
     }
 
-    public void HandleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, NumberFormatException, IOException {
+    public void HandleRequest(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         Question que = null;
 
         Difficulty difficulty = ParseHelper.parseDifficulty(request.getParameter("difficulty"));
         Category category = ParseHelper.parseCategory(request.getParameter("category"));
         String questionText = request.getParameter("questionText");
         String questionType = request.getParameter("questionType");
+        
+        UUID id = UUID.randomUUID();
 
         switch (questionType) {
             case "Multiple":
@@ -45,22 +50,21 @@ public class AddQuestionServlet extends HttpServlet {
                 options.add(request.getParameter("answer3"));
                 int answerIndex = Integer.parseInt(request.getParameter("radioButtonTrue"));
 
-                que = new MultipleChoiceQuestion(difficulty, category, questionText, options, answerIndex);
+                que = new MultipleChoiceQuestion(id, difficulty, category, questionText, options, answerIndex);
                 break;
 
             case "Open":
-                que = new Question(difficulty, category, questionText, request.getParameter("answer"));
+                que = new Question(id, difficulty, category, questionText, request.getParameter("answer"));
                 break;
 
             case "YesNo":
                 boolean isTrue = request.getParameter("radioButtonYesNo").equalsIgnoreCase("Yes");
-                que = new YesNoQuestion(difficulty, category, questionText, isTrue);
+                que = new YesNoQuestion(id, difficulty, category, questionText, isTrue);
                 break;
         }
 
         if (que != null) {
             Manager.getInsance().addQuestion(que);
-            Manager.getInsance().Save();
 
             request.setAttribute("newQuestion", que);
 

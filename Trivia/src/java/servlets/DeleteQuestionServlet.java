@@ -7,9 +7,6 @@ package servlets;
 
 import helpers.ParseHelper;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +43,6 @@ public class DeleteQuestionServlet extends HttpServlet {
             if (index != Integer.MAX_VALUE) {
                 Question question = Manager.getInsance().getQuestions()[index];
                 Manager.getInsance().deleteQuestion(question);
-                Manager.getInsance().Save();
             }
         }
 

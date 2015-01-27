@@ -2,19 +2,34 @@ package models;
 
 import enums.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Question implements Serializable {
 
+    public UUID id;
     private Difficulty difficulty;
     private Category category;
     private String questionText;
     private String correctAnswer;
 
-    public Question(Difficulty difficulty, Category category, String questionText, String answer) {
+    public Question(UUID id, Difficulty difficulty, Category category, String questionText, String answer) {
+        this.id = id;
         this.difficulty = difficulty;
         this.category = category;
         this.questionText = questionText;
         this.correctAnswer = answer;
+    }
+
+    public String getType() {
+        return "Question";
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public Difficulty getDifficulty() {
@@ -41,8 +56,12 @@ public class Question implements Serializable {
         this.questionText = questionText;
     }
 
-    public void setCurrectAnswer(String answer) {
-        correctAnswer = answer;
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public boolean verifyAnswer(String answer) {
