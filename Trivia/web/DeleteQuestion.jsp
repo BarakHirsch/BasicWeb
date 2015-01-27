@@ -32,11 +32,6 @@
             <input type="hidden" name="QuestionIndex" value="${count}">
             </form>
         </c:forEach>
-
-       
-
-       
-
-
+            
     </body>
 </html>

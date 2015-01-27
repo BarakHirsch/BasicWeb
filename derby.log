@@ -1,0 +1,37 @@
+Tue Jan 27 15:42:06 EET 2015 : Apache Derby Network Server - 10.10.1.3 - (1557168) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue Jan 27 15:42:06 EET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168): instance a816c00e-014b-2ba0-ada5-ffffb3dd9173 
+on database directory C:\Users\Barda\Documents\MyProjects\BasicWeb\QuestionsDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_25/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_25-b18
+user.dir=C:\Program Files\Java\jdk1.8.0_25\db
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\Barda\Documents\MyProjects\BasicWeb
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Jan 27 15:42:13 EET 2015:
+Shutting down instance a816c00e-014b-2ba0-ada5-ffffb3dd9173 on database directory C:\Users\Barda\Documents\MyProjects\BasicWeb\QuestionsDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Tue Jan 27 15:42:13 EET 2015 Thread[DRDAConnThread_3,5,main] (DATABASE = QuestionsDB), (DRDAID = {2}), Database 'QuestionsDB' shutdown.
+----------------------------------------------------------------
+Tue Jan 27 15:43:24 EET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168): instance 560740aa-014b-2ba0-ada5-ffffb3dd9173 
+on database directory C:\Users\Barda\Documents\MyProjects\BasicWeb\QuestionsDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_25/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_25-b18
+user.dir=C:\Program Files\Java\jdk1.8.0_25\db
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\Barda\Documents\MyProjects\BasicWeb
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Jan 27 16:28:57 EET 2015: Shutting down Derby engine
+----------------------------------------------------------------
+Tue Jan 27 16:28:57 EET 2015:
+Shutting down instance 560740aa-014b-2ba0-ada5-ffffb3dd9173 on database directory C:\Users\Barda\Documents\MyProjects\BasicWeb\QuestionsDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------
