@@ -7,8 +7,6 @@ package servlets;
 
 import helpers.ParseHelper;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,11 +22,10 @@ public class DeleteQuestionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //ArrayList<Question> questionsArrayList = Manager.getInsance().getQuestionsArrayList();
-        Question[] questionsArray = Manager.getInsance().getQuestions();
-        Set<Question> mySet = new HashSet<Question>(Arrays.asList(questionsArray));
-        
-        request.setAttribute("questionsAttribute", mySet);
+
+        Question[] questions = Manager.getInsance().getQuestions();
+
+        request.setAttribute("questions", questions);
         request.getRequestDispatcher("DeleteQuestion.jsp").forward(request, response);
     }
 
@@ -45,17 +42,14 @@ public class DeleteQuestionServlet extends HttpServlet {
         if (indexString != null) {
 
             int index = ParseHelper.tryParseNumber(indexString);
-            
-            if (index == Integer.MAX_VALUE) {
-                request.getRequestDispatcher("DeleteQuestion.jsp").forward(request, response);
-                return;
+
+            if (index != Integer.MAX_VALUE) {
+                Question question = Manager.getInsance().getQuestions()[index];
+                Manager.getInsance().deleteQuestion(question);
+                Manager.getInsance().Save();
             }
-            
-            Question question = Manager.getInsance().getQuestions()[index];
-            Manager.getInsance().deleteQuestion(question);
-            Manager.getInsance().Save();
         }
 
-        request.getRequestDispatcher("DeleteQuestion.jsp").forward(request, response);
+        doGet(request, response);
     }
 }
