@@ -55,6 +55,10 @@ public class Manager {
     public Question[] getQuestions() {
         return questions.toArray(new Question[questions.size()]);
     }
+    
+    public ArrayList<Question> getQuestionsArrayList() {
+        return questions;
+    }
 
     public void deleteQuestion(Question question) {
         questions.remove(question);

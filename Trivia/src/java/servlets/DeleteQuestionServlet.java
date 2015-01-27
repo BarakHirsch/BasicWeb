@@ -7,6 +7,11 @@ package servlets;
 
 import helpers.ParseHelper;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +24,12 @@ public class DeleteQuestionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HandleRequest(request, response);
+        //ArrayList<Question> questionsArrayList = Manager.getInsance().getQuestionsArrayList();
+        Question[] questionsArray = Manager.getInsance().getQuestions();
+        Set<Question> mySet = new HashSet<Question>(Arrays.asList(questionsArray));
+        
+        request.setAttribute("questionsAttribute", mySet);
+        request.getRequestDispatcher("DeleteQuestion.jsp").forward(request, response);
     }
 
     @Override
