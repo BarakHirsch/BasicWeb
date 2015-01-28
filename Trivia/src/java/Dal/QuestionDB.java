@@ -1,7 +1,13 @@
 package Dal;
 
+import enums.Category;
+import enums.Difficulty;
+import helpers.ParseHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.UUID;
 import models.Question;
 
 public class QuestionDB {
@@ -37,12 +43,27 @@ public class QuestionDB {
     }
 
     public Question[] getAllQuestions() {
-        try {
-            //TODO
+
+        Question[] questionArray=null;
+        try (Connection connection = DBUtil.getConnection()) {
+            int sizeOfArray;
+            int cnt = 0;
+            Statement st = connection.createStatement();
+            ResultSet size = st.executeQuery("SELECT COUNT(*) FROM Questions");
+            size.next();
+            sizeOfArray = size.getInt(1);
+            questionArray = new Question[sizeOfArray];
+            ResultSet rs = st.executeQuery("select * from Questions");
+
+            while (rs.next()) {
+                questionArray[cnt++] = new Question(UUID.fromString(rs.getString(1)), ParseHelper.parseDifficulty(Integer.toString(rs.getInt(2))), ParseHelper.parseCategory(Integer.toString(rs.getInt(2))), rs.getString(4), rs.getString(5));
+            }
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        
+        return questionArray;
     }
 
 }
