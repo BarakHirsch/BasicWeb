@@ -111,3 +111,5 @@ java.sql.SQLException: Database 'QuestionsDB' not found.
 ============= end nested exception, level (1) ===========
 Cleanup action completed
 Wed Jan 28 20:41:42 IST 2015 Thread[DRDAConnThread_4,5,main] (DATABASE = QuestionsDB), (DRDAID = {3}), Database 'QuestionsDB' not found.
+----------------------------------------------------------------
+Wed Jan 28 22:10:11 IST 2015: Shutting down Derby engine

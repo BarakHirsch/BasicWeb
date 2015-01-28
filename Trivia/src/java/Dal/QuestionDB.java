@@ -35,7 +35,12 @@ public class QuestionDB {
     }
 
     public void deleteQuestion(Question question) {
-        try {
+              
+        try (Connection connection = DBUtil.getConnection()){
+            String id=question.getId().toString();
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("Delete from Questions WHERE id='"+id+"'");
+            connection.close();
             //TODO
         } catch (Exception e) {
             e.printStackTrace();
