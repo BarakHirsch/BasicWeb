@@ -34,16 +34,10 @@ public class DeleteQuestionServlet extends HttpServlet {
 
     public void HandleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        String indexString = request.getParameter("QuestionIndex");
+        String questionId = request.getParameter("questionId");
 
-        if (indexString != null) {
-
-            int index = ParseHelper.tryParseNumber(indexString);
-
-            if (index != Integer.MAX_VALUE) {
-                Question question = Manager.getInsance().getQuestions()[index];
-                Manager.getInsance().deleteQuestion(question);
-            }
+        if (questionId != null) {
+            Manager.getInsance().deleteQuestion(questionId);
         }
 
         doGet(request, response);

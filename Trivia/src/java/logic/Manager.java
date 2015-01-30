@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import models.Question;
 import enums.Category;
 import enums.Difficulty;
-import java.sql.SQLException;
 import java.util.Map;
 
 public class Manager {
 
     public final QuestionDB questionsDb;
-    private ArrayList<Question> questions;
     private static Manager manager;
 
     public static Manager getInsance() {
@@ -30,8 +28,8 @@ public class Manager {
         return questionsDb.getAllQuestions();
     }
 
-    public void deleteQuestion(Question question) {
-        questionsDb.deleteQuestion(question);
+    public void deleteQuestion(String questionId) {
+        questionsDb.deleteQuestion(questionId);
     }
 
     public void addQuestion(Question question) {
@@ -41,7 +39,7 @@ public class Manager {
     public TriviaGame startGame(Map<Category, Difficulty> categories) {
         ArrayList<Question> filteredQuestions = new ArrayList<>();
 
-        for (Question question : questions) {
+        for (Question question : getQuestions()) {
             Difficulty selectedDifficulty = categories.get(question.getCategory());
 
             if (selectedDifficulty != null && selectedDifficulty == question.getDifficulty()) {

@@ -9,8 +9,8 @@ public class MultipleChoiceQuestion extends Question {
 
     protected List<String> options;
 
-    public MultipleChoiceQuestion(UUID id, Difficulty difficulty, Category category, String questionText, List<String> options, int answerIndex) {
-        super(id, difficulty, category, questionText, options.get(answerIndex));
+    public MultipleChoiceQuestion(UUID id, Difficulty difficulty, Category category, String questionText, List<String> options, String answer) {
+        super(id, difficulty, category, questionText, answer);
         this.options = options;
     }
 

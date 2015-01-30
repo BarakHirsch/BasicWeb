@@ -50,7 +50,7 @@ public class AddQuestionServlet extends HttpServlet {
                 options.add(request.getParameter("answer3"));
                 int answerIndex = Integer.parseInt(request.getParameter("radioButtonTrue"));
 
-                que = new MultipleChoiceQuestion(id, difficulty, category, questionText, options, answerIndex);
+                que = new MultipleChoiceQuestion(id, difficulty, category, questionText, options, options.get(answerIndex));
                 break;
 
             case "Open":
@@ -59,7 +59,7 @@ public class AddQuestionServlet extends HttpServlet {
 
             case "YesNo":
                 boolean isTrue = request.getParameter("radioButtonYesNo").equalsIgnoreCase("Yes");
-                que = new YesNoQuestion(id, difficulty, category, questionText, isTrue);
+                que = new YesNoQuestion(id, difficulty, category, questionText, isTrue ? "Yes" : "No");
                 break;
         }
 

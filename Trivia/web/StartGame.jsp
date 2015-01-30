@@ -24,7 +24,7 @@
                         }
                 %>
                 <div class="main_content">
-                    <h2>"<%=cat%></h2>
+                    <h2><%=cat%></h2>
                     <img src="Images/<%=cat%>.jpg" alt="" title="" class="left_img">
                     <br>
                     <h4>Please choose difficulty for your questions:</h4>

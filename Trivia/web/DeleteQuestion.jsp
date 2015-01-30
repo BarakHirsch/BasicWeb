@@ -23,15 +23,13 @@
         <h2>Click Delete for each question you would like to delete:</h2>
         <jsp:useBean id="questions" type="Question[]" scope="request" />
 
-        <c:set var="count" value="0" scope="page" />
         <c:forEach items="${questions}" var="que" >
             <form action="DeleteQuestionServlet" method="POST">
                 <h3> ${que.questionText} </h3>
                 <h3>Category: ${que.category}. Difficulty: ${que.difficulty}. </h3>
                 <input type="submit" value="Delete">
-                <input type="hidden" name="QuestionIndex" value="${count}">
+                <input type="hidden" name="questionId" value="${que.id}">
             </form>
-            <c:set var="count" value="${count + 1}" scope="page"/>            
         </c:forEach>
 
     </body>

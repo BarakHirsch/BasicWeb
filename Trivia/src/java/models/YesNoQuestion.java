@@ -7,8 +7,8 @@ import java.util.UUID;
 
 public class YesNoQuestion extends MultipleChoiceQuestion {
 
-    public YesNoQuestion(UUID id, Difficulty difficulty, Category category, String questionText, boolean isTrue) {
-        super(id, difficulty, category, questionText, Arrays.asList(new String[]{"Yes", "No"}), isTrue ? 0 : 1);
+    public YesNoQuestion(UUID id, Difficulty difficulty, Category category, String questionText, String isTrue) {
+        super(id, difficulty, category, questionText, Arrays.asList(new String[]{"Yes", "No"}), isTrue);
     }
 
     @Override
