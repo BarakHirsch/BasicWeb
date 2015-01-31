@@ -1,8 +1,8 @@
-Fri Jan 30 15:14:38 IST 2015 : Apache Derby Network Server - 10.8.3.2 - (1557835) started and ready to accept connections on port 1527
+Sat Jan 31 15:08:19 IST 2015 : Apache Derby Network Server - 10.8.3.2 - (1557835) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Fri Jan 30 15:14:38 IST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.2 - (1557835): instance a816c00e-014b-3afa-a042-00001868a687 
-on database directory D:\My Documents\Projects\BasicWeb\TriviaDB\TriviaDB  with class loader sun.misc.Launcher$AppClassLoader@1ba4806 
+Sat Jan 31 15:08:20 IST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.2 - (1557835): instance a816c00e-014b-401b-3450-00001868a687 
+on database directory D:\My Documents\Projects\BasicWeb\TriviaDB\TriviaDB  with class loader sun.misc.Launcher$AppClassLoader@6102d81c 
 Loaded from file:/C:/Program%20Files/Java/jdk1.7.0_65/db/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_65-b19

@@ -86,7 +86,7 @@ public class QuestionDB {
                 Question question = CreateQuestion(connection, 
                         UUID.fromString(rs.getString(1)),
                         ParseHelper.parseDifficulty(Integer.toString(rs.getInt(2))),
-                        ParseHelper.parseCategory(Integer.toString(rs.getInt(2))),
+                        ParseHelper.parseCategory(Integer.toString(rs.getInt(3))),
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6));
