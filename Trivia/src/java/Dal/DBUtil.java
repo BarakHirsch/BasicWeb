@@ -8,8 +8,8 @@ public class DBUtil {
 
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String urlCn = "jdbc:derby://localhost:1527/TriviaDB";
-            return DriverManager.getConnection(urlCn, "trivia", "trivia");
+            String urlCn = "jdbc:derby://localhost:1527/my_DB";
+            return DriverManager.getConnection(urlCn, "root", "root");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
